@@ -4,7 +4,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
--	[`4.8.1`, `4`, `latest`](https://github.com/TimWolla/docker-adminer/blob/c9c54b18f79a66409a3153a94f629ea68f08647c/4/Dockerfile)
+-	[`v4.8.1`, `latest`](https://github.com/jjworren/docker-adminer/tree/v4.8.1/Dockerfile)
 
 # Adminer
 
