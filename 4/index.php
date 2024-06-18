@@ -10,8 +10,14 @@ namespace docker {
 					$return = \Adminer::loginForm();
 					$form = ob_get_clean();
 
-					echo str_replace('name="auth[server]" value="" title="hostname[:port]"', 'name="auth[server]" value="'.($_ENV['ADMINER_DEFAULT_SERVER'] ?: 'db').'" title="hostname[:port]"', $form);
-
+					$form = str_replace('name="auth[server]" value="" title="hostname[:port]"', 'name="auth[server]" value="'.($_ENV['ADMINER_DEFAULT_SERVER'] ?: 'db').'" title="hostname[:port]"', $form);
+					if ($_ENV['ADMINER_DEFAULT_DRIVER']) {
+						$form = str_replace('<option value="' . $_ENV['ADMINER_DEFAULT_DRIVER'] . '">', '<option value="' . $_ENV['ADMINER_DEFAULT_DRIVER'] . '" selected>', $form);
+					}
+					$form = str_replace('name="auth[username]" id="username" value="" autocomplete="username" autocapitalize="off"', 'name="auth[username]" id="username" value="'.($_ENV['ADMINER_DEFAULT_USERNAME'] ?: '').'" autocomplete="username" autocapitalize="off"', $form);
+					$form = str_replace('type="password" name="auth[password]" autocomplete="current-password"', 'type="password" name="auth[password]" value="'.($_ENV['ADMINER_DEFAULT_PASSWORD'] ?: '').'" autocomplete="current-password"', $form);
+					echo str_replace('name="auth[db]" value="" autocapitalize="off"', 'name="auth[db]" value="'.($_ENV['ADMINER_DEFAULT_DB'] ?: '').'" autocapitalize="off"', $form);
+					
 					return $return;
 				}
 
